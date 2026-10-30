@@ -1,0 +1,332 @@
+/**
+ * @name ClearVision V7 for Vencord
+ * @author ClearVision Team
+ * @version 7.0.1
+ * @description Highly customizable theme for Vencord.
+ * @source https://github.com/ClearVision/ClearVision-v7
+ * @website https://clearvision.github.io
+ * @invite dHaSxn3
+ */
+/* IMPORT CSS */
+@import url("https://clearvision.github.io/ClearVision-v7/main.css");
+@import url("https://clearvision.github.io/ClearVision-v7/vencord.css");
+/* SETTINGS */
+:root {
+  /* ACCENT COLORS */
+  --main-color: rgb(123, 110, 199); /* main accent color (hex, rgb or hsl) [default: #2780e6] */
+  --hover-color: rgba(104, 89, 177, 0.55); /* hover accent color (hex, rgb or hsl) [default: #1e63b3] */
+  --success-color: #43b581; /* positive accent color (hex, rgb or hsl) [default: #43b581] */
+  --danger-color: #982929; /* danger accent color (hex, rgb or hsl) [default: #982929] */
+  /* STATUS COLORS */
+  --online-color: #43b581; /* online status color (hex, rgb or hsl) [default: #43b581] */
+  --idle-color: #faa61a; /* idle status color (hex, rgb or hsl) [default: #faa61a] */
+  --dnd-color: #982929; /* dnd status color (hex, rgb or hsl) [default: #982929] */
+  --streaming-color: #593695; /* streaming status color (hex, rgb or hsl) [default: #593695] */
+  --offline-color: #808080; /* offline/invisible status color (hex, rgb or hsl) [default: #808080] */
+  /* APP BACKGROUND */
+  --background-shading-percent: 50%; /* app background shading amount (0 for complete smoothness) [default: 100%] */
+  --background-image: url(https://wallpapers.com/wallpapers/anime-night-ybz0zxhx7cbbz7z0.html); /* app background image (link must be HTTPS) [default: url(https://clearvision.github.io/images/sapphire.jpg)]*/
+  --background-position: center; /* app background position [default: center] */
+  --background-size: cover; /* app background size (px) [default: cover] */
+  --background-attachment: fixed; /* app background attachment [default: fixed] */
+  --background-filter: saturate(calc(var(--saturation-factor, 1) * 1)); /* app background adjustments [default: saturate(calc(var(--saturation-factor, 1) * 1))] */
+  /* USER POPOUT BACKGROUND */
+  --user-popout-image: var(--background-image); /* user popout background image (link must be HTTPS) [default: var(--background-image)] */
+  --user-popout-position: var(--background-position); /* user popout position [default: var(--background-position)] */
+  --user-popout-size: var(--background-size); /* user popout size [default: var(--background-size)] */
+  --user-popout-attachment: var(--background-attachment); /* user popout attachment [default: var(--background-attachment)] */
+  --user-popout-filter: var(--background-filter); /* user popout background adjustments [default: var(--background-filter)] */
+  /* USER MODAL BACKGROUND */
+  --user-modal-image: var(--background-image); /* user modal background image (link must be HTTPS) [default: var(--background-image)] */
+  --user-modal-position: var(--background-position); /* user modal position [default: var(--background-position)] */
+  --user-modal-size: var(--background-size); /* user modal size [default: var(--background-size)] */
+  --user-modal-attachment: var(--background-attachment); /* user modal attachment [default: var(--background-attachment)] */
+  --user-modal-filter: var(--background-filter); /* user modal background adjustments [default: var(--background-filter)] */
+  /* HOME ICON */
+  --home-icon: url(); /* home button icon (link must be HTTPS) [default: url(https://clearvision.github.io/icons/discord.svg)]*/
+  --home-size: cover; /* home button icon size [default: cover] */
+  /* FONTS */
+  --main-font: "gg sans", "Helvetica Neue", Helvetica, Arial, sans-serif; /* main font for app [default: gg sans, Helvetica Neue, Helvetica, Arial, sans-serif] */
+  --code-font: Consolas, "gg mono", "Liberation Mono", Menlo, Courier, monospace; /* font for codeblocks [default: Consolas, Liberation Mono, Menlo, Courier, monospace] */
+  /* CHANNEL COLORS */
+  --channel-normal: var(--interactive-text-default); /* channel text color [default: var(--interactive-text-default)] */
+  --channel-muted: var(--interactive-muted); /* muted channel text color [default: var(--interactive-muted)] */
+  --channel-hover: var(--interactive-text-hover); /* hovered channel text color [default: var(--interactive-text-hover)] */
+  --channel-selected: var(--interactive-text-active); /* selected channel text color [default: var(--interactive-text-active)] */
+  --channel-selected-bg: rgba(104, 89, 177, 0.342); /* selected channel background [default: var(--main-color)] */
+  --channel-unread: var(--main-color); /* unread channel text color [default: var(--main-color)] */
+  --channel-unread-hover: var(--hover-color); /* unread channel hover color [default: var(--hover-color)] */
+  /* ACCESSIBILITY */
+  --focus-color: var(--main-color); /* outline when pressing TAB key [default: var(--main-color)] */
+}
+
+
+/* THEME SPECIFIC SHADING */
+/* LIGHT THEME */
+:is(.theme-light, .theme-dark .theme-light) {
+  --background-shading: rgba(252, 252, 252, 0.3);
+  --card-shading: rgba(252, 252, 252, 0.3);
+  --popout-shading: rgba(252, 252, 252, 0.7);
+  --modal-shading: rgba(252, 252, 252, 0.5);
+  --input-shading: rgba(0, 0, 0, 0.3);
+  --normal-text: #36363c;
+  --muted-text: #75757e;
+}
+
+/* ASH THEME */
+:is(.theme-dark, .theme-light .theme-dark) {
+  --background-shading: rgba(0, 0, 0, 0.4);
+  --card-shading: rgba(0, 0, 0, 0.2);
+  --popout-shading: rgba(0, 0, 0, 0.6);
+  --modal-shading: rgba(0, 0, 0, 0.4);
+  --input-shading: rgba(255, 255, 255, 0.05);
+  --normal-text: #d8d8db;
+  --muted-text: #aeaeb4;
+}
+
+/* DARK THEME */
+:is(.theme-darker, .theme-light .theme-darker) {
+  --background-shading: rgba(0, 0, 0, 0.6);
+  --card-shading: rgba(0, 0, 0, 0.3);
+  --popout-shading: rgba(0, 0, 0, 0.7);
+  --modal-shading: rgba(0, 0, 0, 0.5);
+  --input-shading: rgba(255, 255, 255, 0.05);
+  --normal-text: #c5c8dd;
+  --muted-text: #94949c;
+}
+
+/* ONYX THEME */
+:is(.theme-midnight, .theme-light .theme-midnight) {
+  --background-shading: rgba(0, 0, 0, 0.8);
+  --card-shading: rgba(0, 0, 0, 0.4);
+  --popout-shading: rgba(0, 0, 0, 0.8);
+  --modal-shading: rgba(0, 0, 0, 0.6);
+  --input-shading: rgba(255, 255, 255, 0.05);
+  --normal-text: #dcdcde;
+  --muted-text: #86868e;
+}
+
+
+
+
+
+/* ADD ADDITIONAL CSS BELOW HERE */
+
+/* CUSTOM MENTION COLORS */
+/* Mentions of users and roles in messages */
+:root {
+  --mention-foreground: #9d8cfd;
+  --mention-background: rgba(116, 88, 242, 0.239);
+}
+/* Mention text and background */
+.mentioned .mention,
+.mention {
+  color: var(--mention-foreground) !important;
+  background-color: var(--mention-background) !important;
+}
+
+/* Message background when someone mentions you */
+.message-mention {
+  background-color: rgba(163, 130, 255, 0.12) !important;
+}
+
+/* Hover effect on mentions */
+.mention:hover {
+  background-color: rgba(143, 130, 255, 0.3) !important;
+}
+
+/* CUSTOM MESSAGE LINK COLORS */
+/* Normal links inside messages */
+.markup__75297 a,
+.messageContent__21e69 a {
+  color: #8f86df !important;
+}
+/* Link hover */
+.markup__75297 a:hover,
+.messageContent__21e69 a:hover {
+  color: #e0d2ff !important;
+  text-decoration: underline;
+}
+
+/* CUSTOM SERVER & CHANNEL CATEGORY COLORS */
+
+/* Server channel category headings */
+.containerDefault__29444 .overflow__993fa,
+.name__29444 {
+  color: #b7a8f0 !important;
+}
+
+/* "DIRECT MESSAGES" and sidebar section headings */
+.privateChannelsHeaderContainer__99e7c,
+.headerText__99e7c {
+  color: #b7a8f0 !important;
+}
+
+/* General sidebar section headers */
+section h2,
+nav h2 {
+  color: #d6b8ff !important;
+}
+
+/* HIDE MESSAGE HOVER BACKGROUND */
+.message__5126c:hover,
+.messageListItem__5126c:hover .message__5126c {
+  background-color: transparent !important;
+}
+
+/* SHOW BACKGROUND WHEN RIGHT-CLICKED / CONTEXT MENU OPEN */
+.message__5126c:has(+ .wrapper_f7ecac),
+.message__5126c:has([aria-expanded="true"]) {
+  background-color: rgba(104, 89, 177, 0.25) !important;
+}
+
+/* NORMAL MESSAGES: NO HOVER BACKGROUND */
+.message__5126c:hover {
+  background-color: transparent !important;
+}
+
+/* MESSAGES THAT MENTION YOU: PERMANENT PURPLE TINT */
+.message__5126c.mentioned__5126c,
+.messageListItem__5126c:has(.mentioned__5126c) .message__5126c {
+  background-color: rgba(104, 89, 177, 0.16) !important;
+}
+
+/* KEEP THE MENTION TINT UNCHANGED ON HOVER */
+.message__5126c.mentioned__5126c:hover,
+.messageListItem__5126c:has(.mentioned__5126c):hover .message__5126c {
+  background-color: rgba(104, 89, 177, 0.16) !important;
+}
+
+/* REMOVE SEARCH FILTER DIVIDER */
+.searchAnswer_bd8186 {
+  margin: 0 !important;
+}
+
+/* SELECTED SIDEBAR ITEM BACKGROUND */
+.item_caf372.active_caf372 {
+  background-color: rgba(104, 89, 177, 0.432) !important;
+}
+
+/* HOVERED SIDEBAR ITEM BACKGROUND */
+.item_caf372:hover {
+  background-color: rgba(104, 89, 177, 0.247) !important;
+}
+
+/* CUSTOM BUTTON BACKGROUND */
+.primary_a22cb0 {
+  background-color: rgba(104, 89, 177, 0.438) !important;
+}
+
+/* BUTTON HOVER */
+.primary_a22cb0:hover {
+  background-color: rgba(104, 89, 177, 0.336) !important;
+}
+
+
+/* SELECTED PILL ITEMS */
+.themed_aa8da2.item_aa8da2.selected_aa8da2 {
+  background-color: rgba(104, 89, 177, 0.20) !important;
+}
+
+/* SELECTED TOP PILL ITEMS */
+.themed_aa8da2.item_aa8da2.selected_aa8da2.topPill_aa8da2 {
+  background-color: rgba(104, 89, 177, 0.25) !important;
+}
+
+
+/* UNIFY ACTIVE AND SELECTED BACKGROUNDS */
+.interactive__972a0:active,
+.interactiveSelected__972a0 {
+  background: rgba(104, 89, 177, 0.20) !important;
+  box-shadow: none !important;
+}
+
+/* REMOVE EXTRA OVERLAY COLORS */
+.interactive__972a0:active::before,
+.interactiveSelected__972a0::before,
+.interactive__972a0:active::after,
+.interactiveSelected__972a0::after {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+
+
+/* REMOVE GRADIENT OVERLAYS */
+.member__5d473 .nameContainer__703b9::before,
+.member__5d473 .nameContainer__703b9::after {
+  background: none !important;
+  background-image: none !important;
+}
+
+/* REMOVE GRADIENT MASKS */
+.member__5d473 .nameContainer__703b9 {
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+  transition: background-color 0.2s ease !important;
+}
+
+/* NORMAL NAME APPEARANCE */
+.member__5d473 .nameContainer__703b9 .name__703b9 {
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+/* MEMBER HOVER */
+.clickable__91a9d:hover .childContainer__91a9d {
+  background-color: rgba(125, 114, 180, 0.13) !important;
+  cursor: pointer;
+}
+
+/* SELECTED MEMBER */
+.selected__91a9d {
+  background: transparent !important;
+}
+
+.selected__91a9d .childContainer__91a9d {
+  background-color: rgba(125, 114, 180, 0.26) !important;
+}
+
+
+.button_a22cb0 {
+  border: initial;
+}
+
+/* REMOVE BACKGROUND FROM ALL VENCORD SWITCHES */
+.vc-switch-container,
+.vc-switch-container.vc-switch-checked {
+  background: transparent !important;
+  background-image: none !important;
+}
+
+/* MATCH BUTTON AND LINK COLORS */
+.primary__7a01b,
+.anchor__14d82.anchorUnderlineOnHover__14d82 {
+  color: #957ecf !important;
+}
+
+.wrapper__14245, .categoryItemDefaultCategorySelected_b9ee0c, .categoryItemDefaultCategorySelected_b9ee0c:hover {
+  background: none;
+}
+
+.navButtonActive__08434 {
+  background: #957ecf3d;
+}
+
+.navButtonActive__08434:hover {
+  background: #957ecf50;
+}
+
+section h2, nav h2 {
+  color: inherit !important;
+}
+
+.misc__71961, .name__71961 {
+  display: initial;
+}
+
+.vc-kittysearch-label {
+  color: white;
+}
